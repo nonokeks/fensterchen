@@ -8,11 +8,9 @@ sudo apt-get install libxi-dev libxrandr-dev
 First compilation
 =================
 cd fensterchen
-mkdir cmake_out
-cd cmake_out
-ccmake ..
-c (configure)
-g (generate)
+mkdir build
+cd build
+cmake ..
 
 # compile
 make -j4
