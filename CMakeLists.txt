@@ -1,14 +1,5 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
-cmake_policy(VERSION 2.8)
-
-set(FENSTERCHEN fensterchen)
-set(FRAMEWORK_NAME framework)
-
-project(${FENSTERCHEN})
-
-if(CMAKE_CURRENT_SOURCE_DIR EQUAL CMAKE_CURRENT_BINARY_DIR)
-  message(FATAL_ERROR "Source and binary directories must be different")
-endif(CMAKE_CURRENT_SOURCE_DIR EQUAL CMAKE_CURRENT_BINARY_DIR)
+cmake_minimum_required(VERSION 2.8)
+project(fensterchen)
 
 if(MSVC)
   set(BINARY_DIRECTORY build)
@@ -20,12 +11,11 @@ if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR ("${CMAKE_CXX_COMPILER_ID}" 
   set(CMAKE_CXX_FLAGS "-std=c++0x")
 endif()
 
+add_definitions(-DFENSTERCHEN_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 option(FENSTERCHEN_IN_SOURCE_BUILD "FENSTERCHEN_IN_SOURCE_BUILD" OFF)
 if(FENSTERCHEN_IN_SOURCE_BUILD)
-  add_definitions(-DFENSTERCHEN_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
   add_definitions(-DFENSTERCHEN_BINARY_DIR="../")
 else()
-  add_definitions(-DFENSTERCHEN_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
   add_definitions(-DFENSTERCHEN_BINARY_DIR="${CMAKE_CURRENT_BINARY_DIR}")
 endif()
 
@@ -47,7 +37,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${GLM_DIRECTORY})
 ################################
 # Add libraries to executables
 
-set(BINARY_FILES glfw ${GLFW_LIBRARIES} ${FREEIMAGE_LIBRARY})
+set(LIBRARIES glfw ${GLFW_LIBRARIES})
+
+set(CATCH_DIRECTORY catch-1.1)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${CATCH_DIRECTORY})
 
 ################################
 # Add output directory
@@ -67,17 +60,6 @@ else(MSVC)
   endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif(MSVC)
 
-option(FENSTERCHEN_AUTOMATED_TESTS "FENSTERCHEN_AUTOMATED_TESTS" OFF)
-if(FENSTERCHEN_AUTOMATED_TESTS)
-  add_definitions(-DAUTOMATED_TESTS)
-endif()
-
-if (CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  if (NOT APPLE)
-    add_definitions(-fpermissive)
-  endif()
-endif()
-
 if(MSVC)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif(MSVC)
@@ -86,40 +68,3 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/framework)
 add_subdirectory(framework)
 
 add_subdirectory(source)
-
-set (FENSTERCHEN_TESTS "false" CACHE BOOL "Set to enable testing.")
-if (FENSTERCHEN_TESTS)
-  set(UNITTEST_PP_DIRECTORY unittest-cpp)
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY}/UnitTest++)
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY})
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY}/UnitTest++)
-  #set(BINARY_FILES UnitTest++ glfw ${GLFW_LIBRARIES} ${FREEIMAGE_LIBRARY})
-
-  add_subdirectory(tests)
-  enable_testing()
-  add_test( NAME testFensterchen COMMAND runTests )
-endif (FENSTERCHEN_TESTS)
-
-install (DIRECTORY data DESTINATION .)
-
-# See http://www.vtk.org/Wiki/CMake:CPackPackageGenerators
-set (CPACK_PACKAGE_VERSION_MAJOR "4")
-set (CPACK_PACKAGE_VERSION_MINOR "4")
-set (CPACK_PACKAGE_VERSION_PATCH "2")
-# Use current date in YYYYMMDD format as patch number
-
-# cpack mistakenly detects Mingw-w64 as win32
-if (MINGW)
-  if (CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set (CPACK_SYSTEM_NAME win64)
-  endif ()
-endif ()
-
-
-if (WIN32)
-  set (CPACK_GENERATOR "ZIP")
-else ()
-  set (CPACK_GENERATOR "TBZ2")
-endif ()
-
-include(CPack)
