@@ -1,8 +1,6 @@
 #ifndef BUW_WINDOW_HPP
 #define BUW_WINDOW_HPP
 
-#include "color.hpp"
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -37,7 +35,7 @@ public:
 
   void drawLine(glm::vec2 const& start,
                 glm::vec2 const& end,
-                Color const& color
+                glm::vec3 const& color
                 ) const;
 
   void drawLine(float startX, float startY,
@@ -46,8 +44,7 @@ public:
                 ) const;
 
 
-
-  void drawPoint(glm::vec2 const& p, Color const& col) const;
+  void drawPoint(glm::vec2 const& p, glm::vec3 const& col) const;
 
   void drawPoint(float x, float y, float r, float g, float b) const;
 
