@@ -3,6 +3,8 @@
 #include <point2d.hpp>
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <color.hpp>
+#include <circle.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -27,5 +29,10 @@ TEST_CASE("describe_point2d", "[point2d]")
 	p3.rotate(M_PI);
 	REQUIRE(p3.x() == Approx(-1.0));
 	REQUIRE(p3.y() == Approx(1.0));
+
+	Color black(0.0);
+
+	Circle c{5.7};
+	REQUIRE(c.radius() == Approx(5.7));
 }
 
