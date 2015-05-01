@@ -5,6 +5,7 @@
 #include <cmath>
 #include <color.hpp>
 #include <circle.hpp>
+#include <rectangle.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -32,7 +33,19 @@ TEST_CASE("describe_point2d", "[point2d]")
 
 	Color black(0.0);
 
-	Circle c{5.7};
+	Circle c{5.7, 2.0, 2.0};
 	REQUIRE(c.radius() == Approx(5.7));
+	REQUIRE(c.punkt().x() == Approx(2.0));
+	REQUIRE(c.punkt().y() == Approx(2.0));
+	REQUIRE(c.circumference() == Approx(35.8141));
+
+	Rectangle r{2.0, 3.0, 1.0, 1.0};
+	REQUIRE(r.hoehe() == Approx(2.0));
+	REQUIRE(r.breite() == Approx(3.0));
+	REQUIRE(r.punkt().x() == Approx(1.0));
+	REQUIRE(r.punkt().y() == Approx(1.0));
+	REQUIRE(r.circumference() == Approx(10.0));
+
+	
 }
 

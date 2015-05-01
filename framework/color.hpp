@@ -1,3 +1,6 @@
+# ifndef BUW_Color_HPP
+# define BUW_Color_HPP
+
 struct Color
 {
 	double r;
@@ -11,3 +14,4 @@ struct Color
 	Color() :  r{0.0}, g{0.0}, b{0.0} {}
 };
 
+# endif // BUW_Color_HPP
