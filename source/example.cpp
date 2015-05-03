@@ -1,15 +1,51 @@
 #include <fensterchen.hpp>
+#include <point2d.hpp>
+#include <color.hpp>
+#include <circle.hpp>
+#include <rectangle.hpp>
 
 int main(int argc, char* argv[])
 {
   Window win(glm::ivec2(800,800));
 
+  Rectangle r1{0.3, 0.2, 0.5, 0.5, 1.0, 0.0, 0.0};
+  r1.draw(win);
+
+  Circle c1{0.1, 0.2, 0.5, 1.0, 0.0, 0.0};
+  c1.draw(win);
+
+  Color blau{0.0, 0.0, 1.0};
+
   while (!win.shouldClose()) {
     if (win.isKeyPressed(GLFW_KEY_ESCAPE)) {
       win.stop();
+    } 
+
+    auto m = win.mousePosition();
+
+    if (r1.is_inside(m))
+    {
+      r1.draw(win, blau);
+    }
+    else{
+      r1.draw(win);
     }
 
-    auto t = win.getTime();
+    if (c1.is_inside(m))
+    {
+      c1.draw(win, blau);
+    }
+    else{
+      c1.draw(win);
+    }
+
+    //Rectangle r2{0.06, 0.06, 0.8, 0.5};
+    //r2.draw(win, blau);
+
+    //Circle c2{0.1, 0.2, 0.8};
+    //c2.draw(win, blau);
+
+    /*auto t = win.getTime();
     float x1(0.5 + 0.5 * std::sin(t));
     float y1(0.5 + 0.5 * std::cos(t));
 
@@ -31,6 +67,7 @@ int main(int argc, char* argv[])
 
     win.drawLine(m.x, 0.0f, m.x, 0.01f, 0.0, 0.0, 0.0);
     win.drawLine(m.x, 0.99f,m.x, 1.0f, 0.0, 0.0, 0.0);
+    */
 
     win.update();
   }

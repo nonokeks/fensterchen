@@ -4,7 +4,7 @@
 class Point2d
 {
 public:
-	Point2d(double x, double y);
+	Point2d(float x, float y);
 
 	Point2d();
 
@@ -12,19 +12,19 @@ public:
 	~Point2d();
 
 	//Getter
-	double x() const;
-	double y() const;
+	float x() const;
+	float y() const;
 
 	//Punkt verschieben
-	void translate(double x, double y);
+	void translate(float x, float y);
 
 	//Rotation im Uhrzeigersinn
-	void rotate(double alpha);
+	void rotate(float alpha);
 
 
 private:
-	double x_;
-	double y_;
+	float x_;
+	float y_;
 
 };
 

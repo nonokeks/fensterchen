@@ -2,26 +2,31 @@
 # define BUW_RECTANGLE_HPP
 #include <point2d.hpp>
 #include <color.hpp>
+#include <window.hpp>
+
 
 class Rectangle
 {
 public:
-	Rectangle(double a, double b, double x, double y, double c1, double c2, double c3);
-	Rectangle(double a, double b, double x, double y);
+	Rectangle(float a, float b, float x, float y, float c1, float c2, float c3);
+	Rectangle(float a, float b, float x, float y);
 	Rectangle();
 	~Rectangle();
 
-	double hoehe() const;
-	double breite() const;
+	float hoehe() const;
+	float breite() const;
 	Point2d punkt() const;
-	double circumference() const;
-
+	float circumference() const;
+	Color getColor() const;
+	void draw(Window const& w) const;
+	void draw(Window const& w, Color const& c) const;
+	bool is_inside(glm::vec2 const& mousePosition) const;
 	
 private:
-	double a_; //hoehe
-	double b_; //breite
+	float a_; //hoehe
+	float b_; //breite
 	Point2d punkt_;
-	Color f_;
+	Color farbe_;
 };
 
 

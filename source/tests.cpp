@@ -1,15 +1,14 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include <point2d.hpp>
-#define _USE_MATH_DEFINES
-#include <cmath>
 #include <color.hpp>
 #include <circle.hpp>
 #include <rectangle.hpp>
 
 int main(int argc, char *argv[])
 {
-  return Catch::Session().run(argc, argv);
+    return Catch::Session().run(argc, argv);
+
 }
 
 TEST_CASE("describe_point2d", "[point2d]")
@@ -34,9 +33,9 @@ TEST_CASE("describe_point2d", "[point2d]")
 	Color black(0.0);
 
 	Circle c{5.7, 2.0, 2.0};
-	REQUIRE(c.radius() == Approx(5.7));
-	REQUIRE(c.punkt().x() == Approx(2.0));
-	REQUIRE(c.punkt().y() == Approx(2.0));
+	REQUIRE(c.getRadius() == Approx(5.7));
+	REQUIRE(c.getPunkt().x() == Approx(2.0));
+	REQUIRE(c.getPunkt().y() == Approx(2.0));
 	REQUIRE(c.circumference() == Approx(35.8141));
 
 	Rectangle r{2.0, 3.0, 1.0, 1.0};
@@ -46,6 +45,13 @@ TEST_CASE("describe_point2d", "[point2d]")
 	REQUIRE(r.punkt().y() == Approx(1.0));
 	REQUIRE(r.circumference() == Approx(10.0));
 
-	
-}
+	Circle c2{1.0, 1.0, 1.0, 0.0, 1.0, 0.0};
+	REQUIRE(c2.getColor().r == Approx(0.0));
+	REQUIRE(c2.getColor().g == Approx(1.0));
+	REQUIRE(c2.getColor().b == Approx(0.0));
 
+	Rectangle r2{1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.5};
+	REQUIRE(r2.getColor().r == Approx(1.0));
+	REQUIRE(r2.getColor().g == Approx(0.0));
+	REQUIRE(r2.getColor().b == Approx(0.5));
+}
