@@ -27,8 +27,8 @@ TEST_CASE("describe_point2d", "[point2d]")
 
 	Point2d p3{-1.0, 1.0};
 	p3.rotate(M_PI);
-	REQUIRE(p3.x() == Approx(-1.0));
-	REQUIRE(p3.y() == Approx(1.0));
+	REQUIRE(p3.x() == Approx(1.0));
+	REQUIRE(p3.y() == Approx(-1.0));
 
 	Color black(0.0);
 

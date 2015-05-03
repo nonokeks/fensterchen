@@ -49,5 +49,25 @@ void Circle::draw(Window const& w, Color const& c) const{
 }
 
 bool Circle::is_inside(glm::vec2 const& mousePosition) const{
-	return true;
+	bool a = true;
+	/*Point2d p{punkt_};
+	p.rotate(M_PI);
+	for (int i = 0; i < 180; ++i)
+	{
+		if (punkt_.x()+radius_*cos(i) < mousePosition.x && p.x()+radius_*cos(i) > mousePosition.x)
+		{
+		 	if (punkt_.y()+radius_*sin(i) < mousePosition.y && p.y()+radius_*sin(i) > mousePosition.y)
+			{
+		 		a = true;
+			} 
+		} 
+		else{
+			a = false;
+		}
+
+			
+	}*/
+
+	return a;
+
 }
