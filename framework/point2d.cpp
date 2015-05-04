@@ -3,7 +3,7 @@
 #include <cmath>
 
 Point2d::Point2d(float x, float y) : x_{x}, y_{y} {}
-//Point2d(Point2d const& p) : x_{p.x()}, y_{p.y()} {}
+Point2d::Point2d(Point2d const& p) : x_{p.x()}, y_{p.y()} {}
 Point2d::Point2d() : x_{0.0}, y_{0.0} {}
 
 Point2d::~Point2d(){}

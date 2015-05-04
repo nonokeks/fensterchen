@@ -7,6 +7,10 @@ Rectangle::Rectangle(float a, float b, float x, float y, float c1, float c2, flo
 
 Rectangle::Rectangle(float a, float b, float x, float y) : a_{a}, b_{b}, punkt_{x,y} {}
 
+Rectangle::Rectangle(float a, float b, Point2d const& punkt, Color const& farbe) : a_{a}, b_{b}, punkt_{punkt}, farbe_{farbe} {}
+
+Rectangle::Rectangle(float a, float b, Point2d const& punkt): a_{a}, b_{b}, punkt_{punkt} {}
+
 Rectangle::Rectangle() : a_{1.0}, b_{1.0}, punkt_{0.0, 0.0} {}
 
 Rectangle::~Rectangle(){}

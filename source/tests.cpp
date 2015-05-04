@@ -31,6 +31,7 @@ TEST_CASE("describe_point2d", "[point2d]")
 	REQUIRE(p3.y() == Approx(-1.0));
 
 	Color black(0.0);
+	Color red(1.0, 0.0, 0.0);
 
 	Circle c{5.7, 2.0, 2.0};
 	REQUIRE(c.getRadius() == Approx(5.7));
@@ -45,13 +46,13 @@ TEST_CASE("describe_point2d", "[point2d]")
 	REQUIRE(r.punkt().y() == Approx(1.0));
 	REQUIRE(r.circumference() == Approx(10.0));
 
-	Circle c2{1.0, 1.0, 1.0, 0.0, 1.0, 0.0};
+	Circle c2{1.0, p , black};
 	REQUIRE(c2.getColor().r == Approx(0.0));
-	REQUIRE(c2.getColor().g == Approx(1.0));
+	REQUIRE(c2.getColor().g == Approx(0.0));
 	REQUIRE(c2.getColor().b == Approx(0.0));
 
-	Rectangle r2{1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.5};
+	Rectangle r2{1.0, 1.0, p, red};
 	REQUIRE(r2.getColor().r == Approx(1.0));
 	REQUIRE(r2.getColor().g == Approx(0.0));
-	REQUIRE(r2.getColor().b == Approx(0.5));
+	REQUIRE(r2.getColor().b == Approx(0.0));
 }

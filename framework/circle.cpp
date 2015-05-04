@@ -14,6 +14,10 @@ Circle::Circle(float r, float x, float y, float c1, float c2, float c3) : radius
 
 Circle::Circle(float r, float x, float y) : radius_{r}, punkt_{x,y} {}
 
+Circle::Circle(float r, Point2d const& punkt, Color const& farbe): radius_{r}, punkt_{punkt}, farbe_{farbe} {}
+
+Circle::Circle(float r, Point2d const& punkt): radius_{r}, punkt_{punkt} {}
+
 Circle::Circle() : radius_{0.0}, punkt_{0.0,0.0} {}
 
 Circle::~Circle(){}
@@ -49,7 +53,7 @@ void Circle::draw(Window const& w, Color const& c) const{
 }
 
 bool Circle::is_inside(glm::vec2 const& mousePosition) const{
-	bool a = true;
+	bool a = false;
 	/*Point2d p{punkt_};
 	p.rotate(M_PI);
 	for (int i = 0; i < 180; ++i)

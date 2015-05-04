@@ -14,6 +14,8 @@ class Circle
 public:
 	Circle(float r, float x, float y, float c1, float c2, float c3);
 	Circle(float r, float x, float y);
+	Circle(float r, Point2d const& punkt, Color const& farbe);
+	Circle(float r, Point2d const& punkt);
 	Circle();
 	~Circle();
 

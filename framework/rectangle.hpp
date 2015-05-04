@@ -10,6 +10,8 @@ class Rectangle
 public:
 	Rectangle(float a, float b, float x, float y, float c1, float c2, float c3);
 	Rectangle(float a, float b, float x, float y);
+	Rectangle(float a, float b, Point2d const& punkt, Color const& farbe);
+	Rectangle(float a, float b, Point2d const& punkt);
 	Rectangle();
 	~Rectangle();
 

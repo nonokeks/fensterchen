@@ -11,6 +11,8 @@ struct Color
 
 	Color(float x) : r{x}, g{x}, b{x} {}
 
+	Color(Color const& c) : r{c.r}, g{c.g}, b{c.g} {}
+
 	Color() :  r{0.0}, g{0.0}, b{0.0} {}
 };
 

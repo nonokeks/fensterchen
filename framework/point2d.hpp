@@ -5,7 +5,7 @@ class Point2d
 {
 public:
 	Point2d(float x, float y);
-	//Point2d(Point2d const& p);
+	Point2d(Point2d const& p);
 	Point2d();
 
 	//Destructor
